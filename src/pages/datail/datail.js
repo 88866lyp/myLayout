@@ -160,7 +160,7 @@ export default class Datail extends Component {
 
     // 获取 数据列表
     getRoles = async () => {
-        const result = await axios.get('/data', { dataType: 'json' })
+        const result = await axios.get('/getList', { dataType: 'json' })
         if (result.status === 200 && result.statusText === 'OK') {
             const roles = result.data.date
             this.setState({

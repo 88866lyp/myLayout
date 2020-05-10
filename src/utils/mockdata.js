@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 
-Mock.mock('/data', {
+Mock.mock('/getList', {
     date: function () {
         let tableListDataSource = []
         for (let i = 0; i < 46; i += 1) {
