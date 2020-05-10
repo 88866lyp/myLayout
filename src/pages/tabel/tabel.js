@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Row, Col, Input, Button } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import Datail from '../datail/datail'
-import LinkButton from '../../components/link-button/index'
+import {LinkButton} from '../../components/link-button/index'
 
 const AdvancedSearchForm = () => {
     const [expand, setExpand] = useState(false);

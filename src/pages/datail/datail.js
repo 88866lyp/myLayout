@@ -3,7 +3,7 @@ import { Card, Form, Button, Input, Table, Modal } from 'antd'
 import '../../utils/mockdata'
 import axios from 'axios'
 import { formateDate } from '../../utils/dateUtils'
-import LinkButton from '../../components/link-button/index'
+import { LinkButton, Spanhtml } from '../../components/link-button/index'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 // 数据路由
@@ -12,7 +12,6 @@ export default class Datail extends Component {
     state = {
         roles: [], // 数据数组
         isShowAdd: false, // 是否显示添加页面
-        role: {}, // 选中的 role
     }
 
     initColumns = () => {
@@ -33,7 +32,39 @@ export default class Datail extends Component {
             },
             {
                 title: '状态',
-                dataIndex: 'href',
+                dataIndex: 'disabled',
+                render: (disabled) => { // 参数分别为当前行的值，当前行数据，行索引
+                    if (disabled) {
+                        return (
+                            <span>
+                                <Spanhtml style={{ background: 'red' }} ></Spanhtml>
+                                <span>异常</span>
+                            </span>
+                        )
+                    }
+                    if (!disabled) {
+                        return (
+                            <span>
+                                <Spanhtml style={{ background: 'green' }} ></Spanhtml>
+                                <span>已上线</span>
+                            </span>
+                        )
+                    }
+                    if (disabled !== true && disabled !== false) {
+                        return (
+                            <span>
+                                <Spanhtml style={{ background: 'green' }} ></Spanhtml>
+                                <span>运行中</span>
+                            </span>
+                        )
+                    }
+                    // return (
+                    //     <span>
+                    //         <Spanhtml style={{ background: 'red' }} ></Spanhtml>
+                    //         <span>{disabled === true ? "异常" : "已上线"}</span>
+                    //     </span>
+                    // )
+                },
                 filters: [
                     { text: 'Joe', value: 'Joe' },
                     { text: 'Jim', value: 'Jim' },
@@ -51,8 +82,8 @@ export default class Datail extends Component {
                 title: '操作',
                 render: () => (
                     <span>
-                        <LinkButton>修改</LinkButton>
-                        <LinkButton>删除</LinkButton>
+                        <LinkButton>配置</LinkButton>
+                        <LinkButton>订阅警报</LinkButton>
                     </span>
                 )
             },
